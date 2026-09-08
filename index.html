@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mini Studio Pro — Client DAW (HTML/CSS/JS)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <h1>Mini Studio Pro</h1>
+      <div class="subtitle">Client-side DAW — Web Audio, MIDI, Mic, Arranger, Effects</div>
+    </div>
+    <div class="transport">
+      <button id="playBtn">Play</button>
+      <button id="stopBtn">Stop</button>
+      <button id="recordBtn">Record (Mic)</button>
+      <label>Tempo <input id="tempo" type="range" min="40" max="200" value="100" /> <span id="tempoVal">100</span> BPM</label>
+      <button id="exportBtn">Export WAV</button>
+      <button id="exportStemsBtn">Export Stems</button>
+      <button id="saveBtn">Save Project</button>
+      <input id="loadFile" type="file" accept=".json" style="display:none" />
+      <button id="loadBtn">Load Project</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="left">
+      <div class="arranger panel" id="arranger">
+        <div class="panel-header"><h3>Arranger</h3><div class="arranger-controls"><button id="addPatternBtn">New Pattern</button><select id="patternLength"><option>8</option><option selected>16</option><option>32</option></select></div></div>
+        <div id="arrangerGrid" class="arranger-grid"></div>
+      </div>
+
+      <div class="pattern-editor panel" id="patternEditor">
+        <div class="panel-header"><h3>Pattern Editor</h3><div class="pattern-controls"><span id="currentPatternLabel">Pattern: 0</span></div></div>
+        <div id="patternTracks" class="pattern-tracks"></div>
+      </div>
+
+      <div class="piano-wrap panel">
+        <h3>Piano (A..K keys) & Synth Controls</h3>
+        <div id="piano" class="piano"></div>
+        <div class="synth-controls">
+          <label>Osc <select id="synthOsc"><option value="saw">Saw</option><option value="square">Square</option><option value="sine">Sine</option></select></label>
+          <label>Filter <input id="filterCut" type="range" min="200" max="8000" value="1200" /></label>
+          <label>ADSR <input id="envA" type="range" min="0" max="1" step="0.01" value="0.01" />A <input id="envD" type="range" min="0" max="1" step="0.01" value="0.2" />D <input id="envS" type="range" min="0" max="1" step="0.01" value="0.6" />S <input id="envR" type="range" min="0" max="2" step="0.01" value="0.4" />R</label>
+        </div>
+      </div>
+    </section>
+
+    <section class="right">
+      <div class="mixer panel" id="mixer">
+        <div class="panel-header"><h3>Mixer</h3></div>
+        <div id="mixerChannels"></div>
+      </div>
+
+      <div class="library panel" id="library">
+        <div class="panel-header"><h3>Sample Library</h3><div class="lib-controls"><input id="fileSample" type="file" accept="audio/*" multiple /><button id="clearSamples">Clear</button></div></div>
+        <div id="samplesList" class="samples-list">Drop audio files here to load</div>
+      </div>
+
+      <div class="visualizer panel">
+        <canvas id="viz" width="600" height="160"></canvas>
+      </div>
+
+      <div class="info panel" id="info">
+        <h4>Tips</h4>
+        <ul>
+          <li>Drag & drop WAV/MP3 into Library to use as sample tracks.</li>
+          <li>Use MIDI keyboard to play synth (if available).</li>
+          <li>Record from microphone to a new track using Record (Mic).</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Mini Studio Pro — pure client-side (HTML/CSS/JS). Created for school project. Report issues via README.
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
